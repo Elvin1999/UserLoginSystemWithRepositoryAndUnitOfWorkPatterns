@@ -55,6 +55,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Domain\Views\RegistriationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Domain\Views\UserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -62,6 +70,27 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\SqlServer\SqlContext.cs" />
+    <Compile Include="DataAccess\SqlServer\SqlUnitOfWork.cs" />
+    <Compile Include="DataAccess\SqlServer\SqlUserRepository.cs" />
+    <Compile Include="Domain\Abstractions\IRepository.cs" />
+    <Compile Include="Domain\Abstractions\IUnitOfWork.cs" />
+    <Compile Include="Domain\Abstractions\IUserRepository.cs" />
+    <Compile Include="Domain\Commands\LoginCommand.cs" />
+    <Compile Include="Domain\Commands\RegistrCommand.cs" />
+    <Compile Include="Domain\Commands\UsersCommand\AddCommand.cs" />
+    <Compile Include="Domain\Commands\UsersCommand\DeleteCommand.cs" />
+    <Compile Include="Domain\Commands\UsersCommand\UpdateCommand.cs" />
+    <Compile Include="Domain\Entities\Helper.cs" />
+    <Compile Include="Domain\Entities\User.cs" />
+    <Compile Include="Domain\ViewModels\BaseViewModel.cs" />
+    <Compile Include="Domain\ViewModels\UserViewModel.cs" />
+    <Compile Include="Domain\Views\RegistriationWindow.xaml.cs">
+      <DependentUpon>RegistriationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Views\UserWindow.xaml.cs">
+      <DependentUpon>UserWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -95,8 +124,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DataAccess\" />
-    <Folder Include="Domain\" />
+    <Folder Include="DataAccess\OracleServer\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
