@@ -51,7 +51,7 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.DataAccess.SqlServer
                             user.Id = Convert.ToInt32(reader[nameof(user.Id)]);
                             user.Username = Convert.ToString(reader[nameof(user.Username)]);
                             user.Password = Convert.ToString(reader[nameof(user.Password)]);
-                            user.HasAdminPermission = Convert.ToBoolean(reader[nameof(user.HasAdminPermission)]);
+                            user.HasAdminRule = Convert.ToBoolean(reader[nameof(user.HasAdminRule)]);
                             user.No = ++No;
                             users.Add(user);
                         }

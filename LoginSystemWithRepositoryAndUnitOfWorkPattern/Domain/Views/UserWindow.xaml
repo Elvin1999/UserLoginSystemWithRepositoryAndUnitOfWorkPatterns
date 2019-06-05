@@ -5,8 +5,120 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Views"
         mc:Ignorable="d"
-        Title="UserWindow" Height="450" Width="800">
-    <Grid Background="SpringGreen">
-        
+        Title="UserWindow" Height="600" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Canvas>
+           
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Margin="65,5,0,0">
+                    <Grid.Width>670</Grid.Width>
+                    <Grid.Height>350</Grid.Height>
+
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical">
+                            <Label Width="115" Height="35" Content="Username" FontSize="16" 
+                                   Margin="0,20,0,0">
+
+                            </Label>
+
+                            <Label Width="115"  Height="35" Content="Password" FontSize="14" Margin="0,20,0,0">
+
+                            </Label>
+          
+                   
+                            <Label Width="115"  Height="35" Content="IsMonitor" FontSize="14" Margin="0,20,0,0">
+
+                            </Label>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Height="360" Width="160">
+                            <TextBox Text="{Binding CurrentClient.Name,Mode=TwoWay}" Height="30" Width="140" Margin="0,22,0,0"></TextBox>
+                            <TextBox Text="{Binding CurrentClient.Surname,Mode=TwoWay}" Height="30" Width="140" Margin="0,20,0,0"></TextBox>
+                          
+                           
+                            <CheckBox Content="No"  IsChecked="{Binding IsMonitor}" Height="30" Width="140" Margin="0,35,0,0">
+                                <!--No ve ya Yes olmagini herdefe deyish dataTriggerle-->
+                            </CheckBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Height="360" Width="160" Margin="120,0,0,0">
+                            <Button Width="130" Height="60" Background="White" BorderThickness="0" BorderBrush="AliceBlue" Margin="10,10,0,0"
+                                Command="{Binding AddCommand}"
+                                Content="Add" FontFamily="Comic Sans MS" FontSize="24" 
+                                >
+                                <Button.Resources>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="CornerRadius" Value="10"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                            <Button Width="130" Height="60" Background="White" BorderThickness="0" BorderBrush="AliceBlue" Margin="10,20,0,0"
+                                Command="{Binding UpdateCommand}"
+                                Content="Update" FontFamily="Comic Sans MS" FontSize="24" 
+                                >
+                                <Button.Resources>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="CornerRadius" Value="10"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+
+                            <Button Width="130" Height="60" Background="White" BorderThickness="0" BorderBrush="AliceBlue" Margin="10,20,0,0"
+                                Command="{Binding DeleteCommand}"
+                                Content="Delete" FontFamily="Comic Sans MS" FontSize="24" 
+                                >
+                                <Button.Resources>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="CornerRadius" Value="10"/>
+                                    </Style>
+
+                                </Button.Resources>
+                            </Button>
+                        </StackPanel>
+                        
+                    </StackPanel>
+
+                </Grid>
+                <Grid Grid.Row="1" Margin="65,-100,0,0">
+
+                    <Grid.Width>670</Grid.Width>
+                    <Grid.Height>250</Grid.Height>
+                    <ListView Name="listViewUsers" ItemsSource="{Binding AllUsers}" SelectedItem="{Binding SelectedUser}" Width="670" HorizontalAlignment="Left">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="No" Width="50">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Padding="5,0" Text="{Binding No}" TextAlignment="Center"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Name" Width="120">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Padding="5,0" Text="{Binding Username}" TextAlignment="Center"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Header="HasAdminRule" Width="120">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Padding="5,0" Text="{Binding AdminRule}" TextAlignment="Center"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+
+                            </GridView>
+
+                        </ListView.View>
+                    </ListView>
+
+                </Grid>
+            </Grid>
+        </Canvas>
     </Grid>
 </Window>

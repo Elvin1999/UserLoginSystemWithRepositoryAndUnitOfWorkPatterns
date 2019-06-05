@@ -25,7 +25,6 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern
                 DataSource = @"DOCUMENTS-ПК\MYSQLSERVERMSSQL",
                 InitialCatalog = "LoginSystemDb"
             };
-
             DB = new SqlUnitOfWork(stringBuilder.ConnectionString);
         }
     }

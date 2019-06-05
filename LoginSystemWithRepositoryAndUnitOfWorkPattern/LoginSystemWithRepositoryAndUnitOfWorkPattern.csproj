@@ -85,6 +85,7 @@
     <Compile Include="Domain\Entities\Helper.cs" />
     <Compile Include="Domain\Entities\User.cs" />
     <Compile Include="Domain\ViewModels\BaseViewModel.cs" />
+    <Compile Include="Domain\ViewModels\MainViewModel.cs" />
     <Compile Include="Domain\ViewModels\UserViewModel.cs" />
     <Compile Include="Domain\Views\RegistriationWindow.xaml.cs">
       <DependentUpon>RegistriationWindow.xaml</DependentUpon>

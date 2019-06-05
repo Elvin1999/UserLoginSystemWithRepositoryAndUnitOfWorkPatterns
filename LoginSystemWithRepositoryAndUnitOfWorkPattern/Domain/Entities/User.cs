@@ -12,13 +12,13 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Entities
         public int No { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public bool HasAdminPermission { get; set; }
-        public string AdminPermission
+        public bool HasAdminRule { get; set; }
+        public string AdminRule
         {
             get
             {
 
-                if (HasAdminPermission)
+                if (HasAdminRule)
                 {
                     return "Yes";
                 }
@@ -27,6 +27,11 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Entities
                     return "No";
                 }
             }
+        }
+
+        public User Clone()
+        {
+            throw new NotImplementedException();
         }
     }
 
