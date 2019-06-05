@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,8 +10,13 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Commands.UsersCom
 {
     public class DeleteCommand : ICommand
     {
-        public event EventHandler CanExecuteChanged;
+        public DeleteCommand(UserViewModel userViewModel)
+        {
+            UserViewModel = userViewModel;
+        }
 
+        public event EventHandler CanExecuteChanged;
+        public UserViewModel UserViewModel { get; set; }
         public bool CanExecute(object parameter)
         {
             return true;
@@ -18,7 +24,13 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Commands.UsersCom
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            var user = UserViewModel.SelectedUser;
+            if (user != null)
+            {
+
+                App.DB.UserRepository.DeleteData(user);
+                UserViewModel.AllUsers = App.DB.UserRepository.GetAllData();
+            }
         }
     }
 }

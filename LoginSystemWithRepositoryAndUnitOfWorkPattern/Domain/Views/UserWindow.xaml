@@ -55,7 +55,8 @@
                                 </Button.Resources>
                             </Button>
                             <Button Width="130" Height="60" Background="White" BorderThickness="0" BorderBrush="AliceBlue" Margin="10,20,0,0"
-                                Command="{Binding UpdateCommand}"
+                               CommandParameter="{Binding ElementName=MyPasswordTxtb}"
+                                    Command="{Binding UpdateCommand}"
                                 Content="Update" FontFamily="Comic Sans MS" FontSize="24" 
                                 >
                                 <Button.Resources>
@@ -85,7 +86,7 @@
 
                     <Grid.Width>670</Grid.Width>
                     <Grid.Height>250</Grid.Height>
-                    <ListView Name="listViewUsers" ItemsSource="{Binding AllUsers}" SelectedItem="{Binding SelectedUser}" Width="670" HorizontalAlignment="Left">
+                    <ListView Background="SpringGreen" Name="listViewUsers" ItemsSource="{Binding AllUsers}" SelectedItem="{Binding SelectedUser}" Width="670" HorizontalAlignment="Left">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="No" Width="50">

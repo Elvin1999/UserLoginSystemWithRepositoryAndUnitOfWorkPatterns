@@ -13,8 +13,8 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.ViewModels
    public class UserViewModel:BaseViewModel
     {
         public AddCommand AddCommand => new AddCommand(this);
-        //public UpdateCommand UpdateCommand => new UpdateCommand(this);
-        //public DeleteCommand DeleteCommand => new DeleteCommand(this);
+        public UpdateCommand UpdateCommand => new UpdateCommand(this);
+        public DeleteCommand DeleteCommand => new DeleteCommand(this);
         private ObservableCollection<User> allUsers;
         public ObservableCollection<User> AllUsers
         {

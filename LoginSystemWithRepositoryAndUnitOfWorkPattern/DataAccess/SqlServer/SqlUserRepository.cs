@@ -43,9 +43,27 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.DataAccess.SqlServer
 
         public void DeleteData(User data)
         {
-           // throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(db.ConnectionString))
+            {
+                conn.Open();
+                string cmdText = $"delete from Users where Users.Id=@User_Id";
+                using (SqlCommand cmd = new SqlCommand(cmdText, conn))
+                {
+                    cmd.Parameters.AddWithValue("@User_Id", data.Id);
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (SqlException e)
+                    {
+                        MessageBox.Show(e.Message.ToString(), "Error Message");
+                    }
+                }
+            }
         }
         public int No { get; set; } = 0;
+        public object Message { get; private set; }
+
         public ObservableCollection<User> GetAllData()
         {
 
@@ -88,12 +106,38 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.DataAccess.SqlServer
 
         public User GetData(int id)
         {
-            throw new NotImplementedException();
+            var users = GetAllData();
+            var user = users.FirstOrDefault(x => x.Id == id);
+            return user;
         }
 
         public void UpdateData(User data)
         {
-            //throw new NotImplementedException();
+            MessageBox.Show(data.Id.ToString());
+            Helper helper = new Helper();
+            data.Password = helper.GetHashOfString(data.Password);
+            using (SqlConnection conn = new SqlConnection(db.ConnectionString))
+            {
+                conn.Open();
+                string cmdText = $@"UPDATE Users
+                SET Username = @Username, Password = @Password , HasAdminRule=@HasAdminRule
+                Where Users.Id = @User_Id";
+                using (SqlCommand cmd = new SqlCommand(cmdText, conn))
+                {
+                    cmd.Parameters.AddWithValue("@User_Id", data.Id);
+                    cmd.Parameters.AddWithValue("@Username", data.UserName);
+                    cmd.Parameters.AddWithValue("@Password", data.Password);
+                    cmd.Parameters.AddWithValue("@HasAdminRule", data.HasAdminRule);
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (SqlException e)
+                    {
+                        MessageBox.Show(e.Message.ToString(), "Error Message");
+                    }
+                }
+            }
         }
     }
 }
