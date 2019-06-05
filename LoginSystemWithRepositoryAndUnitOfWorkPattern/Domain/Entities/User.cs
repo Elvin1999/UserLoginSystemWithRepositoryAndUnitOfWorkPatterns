@@ -31,7 +31,15 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Entities
 
         public User Clone()
         {
-            throw new NotImplementedException();
+            User user = new User()
+            {
+                  HasAdminRule=this.HasAdminRule,
+                   Id=this.Id,
+                    No=this.No,
+                     Password=this.Password,
+                      Username=this.Username
+            };
+            return user;
         }
     }
 
