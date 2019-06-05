@@ -79,6 +79,7 @@
     <Compile Include="Domain\Abstractions\IUserRepository.cs" />
     <Compile Include="Domain\Commands\LoginCommand.cs" />
     <Compile Include="Domain\Commands\RegistrCommand.cs" />
+    <Compile Include="Domain\Commands\RegistriationCommands\AddCommand.cs" />
     <Compile Include="Domain\Commands\UsersCommand\AddCommand.cs" />
     <Compile Include="Domain\Commands\UsersCommand\DeleteCommand.cs" />
     <Compile Include="Domain\Commands\UsersCommand\UpdateCommand.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Domain\Entities\User.cs" />
     <Compile Include="Domain\ViewModels\BaseViewModel.cs" />
     <Compile Include="Domain\ViewModels\MainViewModel.cs" />
+    <Compile Include="Domain\ViewModels\RegisterViewModel.cs" />
     <Compile Include="Domain\ViewModels\UserViewModel.cs" />
     <Compile Include="Domain\Views\RegistriationWindow.xaml.cs">
       <DependentUpon>RegistriationWindow.xaml</DependentUpon>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Views"
         mc:Ignorable="d"
         Title="UserWindow" Height="600" Width="800" WindowStartupLocation="CenterScreen">
-    <Grid>
+    <Grid Background="SpringGreen">
         <Canvas>
            
             <Grid>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.ViewModels;
+using LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +11,13 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Commands
 {
     public class RegistrCommand : ICommand
     {
+        public RegistrCommand(MainViewModel mainViewModel)
+        {
+            MainViewModel = mainViewModel;
+        }
+
+        public MainViewModel MainViewModel { get; set; }
+
         public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
@@ -18,7 +27,9 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Commands
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            RegisterViewModel registerViewModel = new RegisterViewModel();
+            RegistriationWindow registriationWindow = new RegistriationWindow(registerViewModel);
+            registriationWindow.ShowDialog();
         }
     }
 }

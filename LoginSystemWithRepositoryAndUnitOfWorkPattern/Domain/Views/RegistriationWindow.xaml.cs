@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,12 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Views
     /// </summary>
     public partial class RegistriationWindow : Window
     {
-        public RegistriationWindow()
+        public RegisterViewModel RegisterViewModel { get; set; }
+        public RegistriationWindow(RegisterViewModel registerViewModel)
         {
             InitializeComponent();
+            RegisterViewModel = registerViewModel;
+            DataContext = RegisterViewModel;
         }
     }
 }

@@ -11,6 +11,7 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.ViewModels
    public class MainViewModel:BaseViewModel
     {
         public LoginCommand LoginCommand => new LoginCommand(this);
+        public RegistrCommand RegistrCommand => new RegistrCommand(this);
         private string username;
         public string UserName
         {

@@ -23,7 +23,9 @@
             <Button Width="120" Height="45" Content="Login" Command="{Binding LoginCommand}" 
                      CommandParameter="{Binding ElementName=MyPasswordTxtb}"
                     FontSize="22"></Button>
-            <Button Width="120" Height="45" Content="Register" FontSize="22" Margin="25,0"></Button>
+            <Button Width="120" Height="45" Content="Register"
+                    Command="{Binding RegistrCommand}"
+                    FontSize="22" Margin="25,0"></Button>
             </StackPanel>
         </StackPanel>
       
