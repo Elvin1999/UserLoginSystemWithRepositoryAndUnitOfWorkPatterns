@@ -24,6 +24,8 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Commands.UsersCom
 
         public event EventHandler CanExecuteChanged;
         public UserViewModel UserViewModel { get; set; }
+        public object Message { get; private set; }
+
         public bool CanExecute(object parameter)
         {
             return true;
@@ -33,17 +35,24 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Commands.UsersCom
         {
             var password = (parameter as PasswordBox).Password;
             var user = UserViewModel.CurrentUser;
-
-            Helper helper = new Helper();
-            user.Password = helper.GetHashOfString(password);
-            try
+            var item = UserViewModel.AllUsers.FirstOrDefault(x => x.UserName == user.UserName);
+            if (item == null)
             {
-                App.DB.UserRepository.AddData(user);
-                UserViewModel.AllUsers = App.DB.UserRepository.GetAllData();
+                Helper helper = new Helper();
+                user.Password = helper.GetHashOfString(password);
+                try
+                {
+                    App.DB.UserRepository.AddData(user);
+                    UserViewModel.AllUsers = App.DB.UserRepository.GetAllData();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Username is already exist . . . ");
             }
 
         }
