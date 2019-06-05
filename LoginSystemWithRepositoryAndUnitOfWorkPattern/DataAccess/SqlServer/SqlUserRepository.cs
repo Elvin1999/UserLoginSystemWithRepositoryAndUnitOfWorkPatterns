@@ -37,8 +37,6 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.DataAccess.SqlServer
                     {
                         MessageBox.Show(e.Message.ToString(), "Error Message");
                     }
-                    //cmd.ExecuteNonQuery();
-                    //return (int)cmd.ExecuteScalar();
                 }
             }
         }

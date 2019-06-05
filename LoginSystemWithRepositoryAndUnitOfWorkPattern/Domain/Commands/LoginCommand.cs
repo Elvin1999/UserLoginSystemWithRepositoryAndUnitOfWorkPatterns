@@ -1,4 +1,5 @@
-﻿using LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.ViewModels;
+﻿using LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Entities;
+using LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.ViewModels;
 using LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Views;
 using System;
 using System.Collections.Generic;
@@ -31,10 +32,27 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Commands
             userViewModel.AllUsers = App.DB.UserRepository.GetAllData();
             var username = MainViewModel.UserName;
             var password = (parameter as PasswordBox).Password;
-            MessageBox.Show(username);
-            MessageBox.Show(password);
-            UserWindow userWindow = new UserWindow(userViewModel);
-            userWindow.ShowDialog();
+            Helper helper = new Helper();
+            var password1 = helper.GetHashOfString(password);
+            var user = userViewModel.AllUsers.FirstOrDefault(x => x.UserName == username);
+            if (user != null)
+            {
+                var isEqual = helper.IsEqual(password1, user.Password);
+                if (isEqual)
+                {
+                    UserWindow userWindow = new UserWindow(userViewModel);
+                    userWindow.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Password is not okay");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("User did not find");
+            }
         }
     }
 }

@@ -11,7 +11,6 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Entities
     {
         public string GetHashOfString(string password)
         {
-            password = "Elvin1999";
             var data = Encoding.ASCII.GetBytes(password);
             var sha1 = new SHA1CryptoServiceProvider();
             var sha1data = sha1.ComputeHash(data);
