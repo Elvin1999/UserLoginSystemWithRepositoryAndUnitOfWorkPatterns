@@ -20,7 +20,19 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.DataAccess.SqlServer
         }
         public void AddData(User data)
         {
-           // throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(db.ConnectionString))
+            {
+                conn.Open();
+                string cmdText = $"Insert into Products output inserted.Id values(@Name, @Barcode, @Price)";
+                using (SqlCommand cmd = new SqlCommand(cmdText, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Name", data.Username);
+                    cmd.Parameters.AddWithValue("@Surname", data.Password);
+                    cmd.Parameters.AddWithValue("@Age", data.HasAdminRule);
+                    //cmd.ExecuteNonQuery();
+                    //return (int)cmd.ExecuteScalar();
+                }
+            }
         }
 
         public void DeleteData(User data)

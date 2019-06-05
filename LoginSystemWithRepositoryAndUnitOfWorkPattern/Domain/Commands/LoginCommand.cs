@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Commands
@@ -27,6 +29,10 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Commands
         {
             UserViewModel userViewModel = new UserViewModel();
             userViewModel.AllUsers = App.DB.UserRepository.GetAllData();
+            var username = MainViewModel.UserName;
+            var password = (parameter as PasswordBox).Password;
+            MessageBox.Show(username);
+            MessageBox.Show(password);
             UserWindow userWindow = new UserWindow(userViewModel);
             userWindow.ShowDialog();
         }

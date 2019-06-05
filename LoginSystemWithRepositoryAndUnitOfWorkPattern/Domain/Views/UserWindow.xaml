@@ -35,11 +35,11 @@
                             </Label>
                         </StackPanel>
                         <StackPanel Orientation="Vertical" Height="360" Width="160">
-                            <TextBox Text="{Binding CurrentClient.Name,Mode=TwoWay}" Height="30" Width="140" Margin="0,22,0,0"></TextBox>
-                            <TextBox Text="{Binding CurrentClient.Surname,Mode=TwoWay}" Height="30" Width="140" Margin="0,20,0,0"></TextBox>
+                            <TextBox Text="{Binding CurrentUser.UserName,Mode=TwoWay}" Height="30" Width="140" Margin="0,22,0,0"></TextBox>
+                            <TextBox Text="{Binding CurrentUser.Password,Mode=TwoWay}" Height="30" Width="140" Margin="0,20,0,0"></TextBox>
                           
                            
-                            <CheckBox Content="No"  IsChecked="{Binding IsMonitor}" Height="30" Width="140" Margin="0,35,0,0">
+                            <CheckBox Content="No"  IsChecked="{Binding CurrentUser.IsMonitor}" Height="30" Width="140" Margin="0,35,0,0">
                                 <!--No ve ya Yes olmagini herdefe deyish dataTriggerle-->
                             </CheckBox>
                         </StackPanel>

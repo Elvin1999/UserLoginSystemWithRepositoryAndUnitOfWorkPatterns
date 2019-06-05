@@ -1,4 +1,5 @@
-﻿using LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Entities;
+﻿using LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Commands.UsersCommand;
+using LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,7 +12,7 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.ViewModels
 {
    public class UserViewModel:BaseViewModel
     {
-        //public AddCommand AddCommand => new AddCommand(this);
+        public AddCommand AddCommand => new AddCommand(this);
         //public UpdateCommand UpdateCommand => new UpdateCommand(this);
         //public DeleteCommand DeleteCommand => new DeleteCommand(this);
         private ObservableCollection<User> allUsers;

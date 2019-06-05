@@ -1,5 +1,8 @@
-﻿using System;
+﻿using LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Abstractions;
+using LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,8 +12,15 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Commands.UsersCom
 {
     public class AddCommand : ICommand
     {
-        public event EventHandler CanExecuteChanged;
+        public IUnitOfWork db { get; set; }
+        public AddCommand(UserViewModel userViewModel)
+        {
+            UserViewModel = userViewModel;
+            db = App.DB;
+        }
 
+        public event EventHandler CanExecuteChanged;
+        public UserViewModel UserViewModel { get; set; }
         public bool CanExecute(object parameter)
         {
             return true;
@@ -18,7 +28,10 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Commands.UsersCom
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+
+            var user = UserViewModel.CurrentUser;
+            App.DB.UserRepository.AddData(user);
+            UserViewModel.AllUsers = App.DB.UserRepository.GetAllData();
         }
     }
 }
