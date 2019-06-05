@@ -32,8 +32,11 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Commands.UsersCom
                 password = (parameter as PasswordBox).Password;
             }
             var user = UserViewModel.CurrentUser;
-            if(password!="")
+            if (password != "")
+            {
+
             user.Password = password;
+            }
             MessageBox.Show(user.Password);
             App.DB.UserRepository.UpdateData(user);
             UserViewModel.AllUsers = App.DB.UserRepository.GetAllData();
