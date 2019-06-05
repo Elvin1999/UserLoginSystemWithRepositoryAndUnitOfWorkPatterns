@@ -4,21 +4,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Commands.UsersCommand
+namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Commands.PersonalUserCommands
 {
     public class UpdateCommand : ICommand
     {
-        public UpdateCommand(UserViewModel userViewModel)
+        public UpdateCommand(PersonalUserViewModel personalUserViewModel)
         {
-            UserViewModel = userViewModel;
+            PersonalUserViewModel = personalUserViewModel;
         }
 
         public event EventHandler CanExecuteChanged;
-        public UserViewModel UserViewModel { get; set; }
+        public PersonalUserViewModel PersonalUserViewModel { get; set; }
         public bool CanExecute(object parameter)
         {
             return true;
@@ -31,14 +30,13 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Commands.UsersCom
             {
                 password = (parameter as PasswordBox).Password;
             }
-            var user = UserViewModel.CurrentUser;
+            var user = PersonalUserViewModel.CurrentUser;
             if (password != "")
             {
 
-            user.Password = password;
+                user.Password = password;
             }
             App.DB.UserRepository.UpdateData(user);
-            UserViewModel.AllUsers = App.DB.UserRepository.GetAllData();
         }
     }
 }

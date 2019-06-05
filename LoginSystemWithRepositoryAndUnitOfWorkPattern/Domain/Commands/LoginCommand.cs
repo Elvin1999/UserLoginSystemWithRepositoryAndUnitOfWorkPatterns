@@ -28,6 +28,7 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Commands
         public MainViewModel MainViewModel { get; set; }
         public void Execute(object parameter)
         {
+
             UserViewModel userViewModel = new UserViewModel();
             userViewModel.AllUsers = App.DB.UserRepository.GetAllData();
             var username = MainViewModel.UserName;
@@ -35,13 +36,24 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Commands
             Helper helper = new Helper();
             var password1 = helper.GetHashOfString(password);
             var user = userViewModel.AllUsers.FirstOrDefault(x => x.UserName == username);
+
             if (user != null)
             {
                 var isEqual = helper.IsEqual(password1, user.Password);
                 if (isEqual)
                 {
-                    UserWindow userWindow = new UserWindow(userViewModel);
-                    userWindow.ShowDialog();
+                    if (user.HasAdminRule)
+                    {
+                        UserWindow userWindow = new UserWindow(userViewModel);
+                        userWindow.ShowDialog();
+                    }
+                    else
+                    {
+                        PersonalUserViewModel viewModel = new PersonalUserViewModel();
+                        viewModel.CurrentUser = user;
+                        PersonalUserWindow personalUserWindow = new PersonalUserWindow(viewModel);
+                        personalUserWindow.ShowDialog();
+                    }
                 }
                 else
                 {

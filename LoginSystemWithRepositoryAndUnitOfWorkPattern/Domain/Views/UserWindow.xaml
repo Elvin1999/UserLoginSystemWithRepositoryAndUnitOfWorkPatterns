@@ -28,9 +28,9 @@
                             <Label Width="115"  Height="35" Content="Password" FontSize="14" Margin="0,20,0,0">
 
                             </Label>
-          
-                   
-                            <Label Width="115"  Height="35" Content="IsMonitor" FontSize="14" Margin="0,20,0,0">
+
+
+                            <Label Width="115"  Height="35" Content="HasAdminRule" FontSize="14" Margin="0,20,0,0">
 
                             </Label>
                         </StackPanel>
@@ -48,34 +48,21 @@
                                 Command="{Binding AddCommand}" CommandParameter="{Binding ElementName=MyPasswordTxtb}"
                                 Content="Add" FontFamily="Comic Sans MS" FontSize="24" 
                                 >
-                                <Button.Resources>
-                                    <Style TargetType="{x:Type Border}">
-                                        <Setter Property="CornerRadius" Value="10"/>
-                                    </Style>
-                                </Button.Resources>
+
                             </Button>
                             <Button Width="130" Height="60" Background="White" BorderThickness="0" BorderBrush="AliceBlue" Margin="10,20,0,0"
                                CommandParameter="{Binding ElementName=MyPasswordTxtb}"
                                     Command="{Binding UpdateCommand}"
                                 Content="Update" FontFamily="Comic Sans MS" FontSize="24" 
                                 >
-                                <Button.Resources>
-                                    <Style TargetType="{x:Type Border}">
-                                        <Setter Property="CornerRadius" Value="10"/>
-                                    </Style>
-                                </Button.Resources>
+                       
                             </Button>
 
                             <Button Width="130" Height="60" Background="White" BorderThickness="0" BorderBrush="AliceBlue" Margin="10,20,0,0"
                                 Command="{Binding DeleteCommand}"
                                 Content="Delete" FontFamily="Comic Sans MS" FontSize="24" 
                                 >
-                                <Button.Resources>
-                                    <Style TargetType="{x:Type Border}">
-                                        <Setter Property="CornerRadius" Value="10"/>
-                                    </Style>
-
-                                </Button.Resources>
+     
                             </Button>
                         </StackPanel>
                         

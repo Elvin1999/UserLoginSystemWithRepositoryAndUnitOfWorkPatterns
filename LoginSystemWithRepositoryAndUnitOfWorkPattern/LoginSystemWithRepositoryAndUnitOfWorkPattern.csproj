@@ -55,6 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Domain\Views\PersonalUserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Domain\Views\RegistriationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -78,6 +82,7 @@
     <Compile Include="Domain\Abstractions\IUnitOfWork.cs" />
     <Compile Include="Domain\Abstractions\IUserRepository.cs" />
     <Compile Include="Domain\Commands\LoginCommand.cs" />
+    <Compile Include="Domain\Commands\PersonalUserCommands\UpdateCommand.cs" />
     <Compile Include="Domain\Commands\RegistrCommand.cs" />
     <Compile Include="Domain\Commands\RegistriationCommands\AddCommand.cs" />
     <Compile Include="Domain\Commands\UsersCommand\AddCommand.cs" />
@@ -87,8 +92,12 @@
     <Compile Include="Domain\Entities\User.cs" />
     <Compile Include="Domain\ViewModels\BaseViewModel.cs" />
     <Compile Include="Domain\ViewModels\MainViewModel.cs" />
+    <Compile Include="Domain\ViewModels\PersonalUserViewModel.cs" />
     <Compile Include="Domain\ViewModels\RegisterViewModel.cs" />
     <Compile Include="Domain\ViewModels\UserViewModel.cs" />
+    <Compile Include="Domain\Views\PersonalUserWindow.xaml.cs">
+      <DependentUpon>PersonalUserWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Domain\Views\RegistriationWindow.xaml.cs">
       <DependentUpon>RegistriationWindow.xaml</DependentUpon>
     </Compile>
