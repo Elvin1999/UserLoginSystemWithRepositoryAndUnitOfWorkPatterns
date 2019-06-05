@@ -23,12 +23,20 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.DataAccess.SqlServer
             using (SqlConnection conn = new SqlConnection(db.ConnectionString))
             {
                 conn.Open();
-                string cmdText = $"Insert into Products output inserted.Id values(@Name, @Barcode, @Price)";
+                string cmdText = $"Insert into Users output inserted.Id values(@Username, @Password, @HasAdminRule)";
                 using (SqlCommand cmd = new SqlCommand(cmdText, conn))
                 {
-                    cmd.Parameters.AddWithValue("@Name", data.Username);
-                    cmd.Parameters.AddWithValue("@Surname", data.Password);
-                    cmd.Parameters.AddWithValue("@Age", data.HasAdminRule);
+                    cmd.Parameters.AddWithValue("@Username", data.UserName);
+                    cmd.Parameters.AddWithValue("@Password", data.Password);
+                    cmd.Parameters.AddWithValue("@HasAdminRule", data.HasAdminRule);
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (SqlException e)
+                    {
+                        MessageBox.Show(e.Message.ToString(), "Error Message");
+                    }
                     //cmd.ExecuteNonQuery();
                     //return (int)cmd.ExecuteScalar();
                 }
@@ -61,7 +69,7 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.DataAccess.SqlServer
 
 
                             user.Id = Convert.ToInt32(reader[nameof(user.Id)]);
-                            user.Username = Convert.ToString(reader[nameof(user.Username)]);
+                            user.UserName = Convert.ToString(reader[nameof(user.UserName)]);
                             user.Password = Convert.ToString(reader[nameof(user.Password)]);
                             user.HasAdminRule = Convert.ToBoolean(reader[nameof(user.HasAdminRule)]);
                             user.No = ++No;

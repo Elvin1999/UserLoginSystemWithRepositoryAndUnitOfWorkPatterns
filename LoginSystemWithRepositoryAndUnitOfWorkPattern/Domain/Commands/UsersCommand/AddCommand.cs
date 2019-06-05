@@ -1,4 +1,5 @@
 ﻿using LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Abstractions;
+using LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Entities;
 using LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Commands.UsersCommand
@@ -28,10 +31,21 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Commands.UsersCom
 
         public void Execute(object parameter)
         {
-
+            var password = (parameter as PasswordBox).Password;
             var user = UserViewModel.CurrentUser;
-            App.DB.UserRepository.AddData(user);
-            UserViewModel.AllUsers = App.DB.UserRepository.GetAllData();
+
+            Helper helper = new Helper();
+            user.Password = helper.GetHashOfString(password);
+            try
+            {
+                App.DB.UserRepository.AddData(user);
+                UserViewModel.AllUsers = App.DB.UserRepository.GetAllData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
     }
 }

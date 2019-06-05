@@ -36,16 +36,16 @@
                         </StackPanel>
                         <StackPanel Orientation="Vertical" Height="360" Width="160">
                             <TextBox Text="{Binding CurrentUser.UserName,Mode=TwoWay}" Height="30" Width="140" Margin="0,22,0,0"></TextBox>
-                            <TextBox Text="{Binding CurrentUser.Password,Mode=TwoWay}" Height="30" Width="140" Margin="0,20,0,0"></TextBox>
-                          
-                           
-                            <CheckBox Content="No"  IsChecked="{Binding CurrentUser.IsMonitor}" Height="30" Width="140" Margin="0,35,0,0">
+                            <PasswordBox Name="MyPasswordTxtb" Height="30" Width="140" Margin="0,20,0,0"></PasswordBox>
+
+
+                            <CheckBox Content="No"  IsChecked="{Binding CurrentUser.HasAdminRule}" Height="30" Width="140" Margin="0,35,0,0">
                                 <!--No ve ya Yes olmagini herdefe deyish dataTriggerle-->
                             </CheckBox>
                         </StackPanel>
                         <StackPanel Orientation="Vertical" Height="360" Width="160" Margin="120,0,0,0">
                             <Button Width="130" Height="60" Background="White" BorderThickness="0" BorderBrush="AliceBlue" Margin="10,10,0,0"
-                                Command="{Binding AddCommand}"
+                                Command="{Binding AddCommand}" CommandParameter="{Binding ElementName=MyPasswordTxtb}"
                                 Content="Add" FontFamily="Comic Sans MS" FontSize="24" 
                                 >
                                 <Button.Resources>
@@ -98,7 +98,7 @@
                                 <GridViewColumn Header="Name" Width="120">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Padding="5,0" Text="{Binding Username}" TextAlignment="Center"></TextBlock>
+                                            <TextBlock Padding="5,0" Text="{Binding UserName}" TextAlignment="Center"></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>

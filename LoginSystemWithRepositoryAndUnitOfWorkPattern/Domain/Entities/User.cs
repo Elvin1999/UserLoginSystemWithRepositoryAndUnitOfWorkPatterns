@@ -10,7 +10,7 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Entities
     {
         public int Id { get; set; }
         public int No { get; set; }
-        public string Username { get; set; }
+        public string UserName { get; set; }
         public string Password { get; set; }
         public bool HasAdminRule { get; set; }
         public string AdminRule
@@ -37,7 +37,7 @@ namespace LoginSystemWithRepositoryAndUnitOfWorkPattern.Domain.Entities
                    Id=this.Id,
                     No=this.No,
                      Password=this.Password,
-                      Username=this.Username
+                      UserName=this.UserName
             };
             return user;
         }
